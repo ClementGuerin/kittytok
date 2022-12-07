@@ -1,0 +1,40 @@
+#game {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-image: url('/img/background.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+
+.cat {
+    height: 64px;
+    width: 64px;
+    position: absolute;
+    bottom: 266px;
+    left: 0;
+    transition: 2s;
+    font-family: 'VT323', monospace;
+}
+
+.cat > .cat-skin {
+    height: 100%;
+    width: 100%;
+    background-image: url('/img/cat-sprites-0.png');
+    background-size: cover;
+    transition: 0s;
+}
+
+.cat > .cat-avatar {
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 100px;
+    border: solid 2px rgba(255,255,255,0.5);
+    top: -75px;
+    left: 16px;
+    position: relative;
+}
