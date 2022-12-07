@@ -1,0 +1,18 @@
+{
+  "background_color": "#398fcf",
+  "description": "KittyTok le jeux avec pleins de chats",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "KittyTok",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "kittytok",
+  "start_url": "/",
+  "theme_color": "#398fcf",
+  "categories": [
+    "games"
+  ],
+  "screenshots": [],
+  "icons": [],
+  "shortcuts": []
+}
