@@ -2,7 +2,7 @@
   "background_color": "#398fcf",
   "description": "KittyTok le jeux avec pleins de chats",
   "dir": "ltr",
-  "display": "standalone",
+  "display": "fullscreen",
   "name": "KittyTok",
   "orientation": "any",
   "scope": "/",

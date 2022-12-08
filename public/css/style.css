@@ -9,14 +9,28 @@
     background-position: center center;
 }
 
+#game::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('/img/snowman.png');
+    background-size: cover;
+    background-position: center center;
+    z-index: 1;
+    pointer-events: none;
+}
+
 .cat {
-    height: 64px;
-    width: 64px;
+    height: 128px;
+    width: 128px;
     position: absolute;
-    bottom: 266px;
     left: 0;
     transition: 2s;
     font-family: 'VT323', monospace;
+    text-align: center;
 }
 
 .cat > .cat-skin {
@@ -28,13 +42,24 @@
 }
 
 .cat > .cat-avatar {
-    height: 30px;
-    width: 30px;
+    height: 60px;
+    width: 60px;
     object-fit: cover;
     object-position: center;
     border-radius: 100px;
     border: solid 2px rgba(255,255,255,0.5);
-    top: -75px;
-    left: 16px;
+    top: -160px;
     position: relative;
+}
+
+.banner-container {
+    position: fixed;
+    z-index: 999999;
+    left: 0;
+    top: 280;
+    width: 100%;
+    text-align: center;
+}
+
+#banner {
 }

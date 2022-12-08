@@ -21,16 +21,27 @@ server.listen(3000, () => {
 });
 
 // Username of someone who is currently live
-let tiktokUsername = "anabeatriz122310";
+let tiktokUsername = "histoireredditenfrancais";
 
 // Create a new wrapper object and pass the username
 let tiktokLiveConnection = new WebcastPushConnection(tiktokUsername);
 
-// Connect to the chat (await can be used as well)
-tiktokLiveConnection.connect().then(state => {
-    console.info(`Connected to roomId ${state.roomId}`);
-}).catch(err => {
-    console.error('Failed to connect', err);
+startTiktokConnection();
+
+function startTiktokConnection(){
+    tiktokLiveConnection.connect().then(state => {
+        console.info(`Connected to roomId ${state.roomId}`);
+    }).catch(err => {
+        console.error('Failed to connect', err);
+        setTimeout(function(){
+            startTiktokConnection();
+        }, 10000);
+    })
+};
+
+tiktokLiveConnection.on('disconnected', () => {
+    console.log('Disconnected :(');
+    startTiktokConnection();
 })
 
 // Define the events that you want to handle

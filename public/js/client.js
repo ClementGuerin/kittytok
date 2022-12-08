@@ -34,6 +34,7 @@ socket.on('member', function(data) {
 // Game
 
 const gameWindow = document.querySelector("#game");
+var catGround = 830;
 
 function createCat(user) {
     // Cat
@@ -44,6 +45,7 @@ function createCat(user) {
     newCat.setAttribute("data-sprite", "0");
     newCat.setAttribute("data-life", "100");
     newCat.style.left = (gameWindow.offsetWidth / 2) + "px";
+    newCat.style.top = catGround + "px";
     
     // Cat > Cat Skin
     let newCatSkin = document.createElement("div");
@@ -142,6 +144,17 @@ setInterval(function(){
         }
     }
 }, 300);
+
+// Params
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+setTimeout(function(){
+    console.log(urlParams.get('cats'));
+    if(urlParams.get('cats')) {
+        catGround = urlParams.get('cats');
+    }
+}, 1000);
 
 // Help functions
 function randomNum(min, max) {
