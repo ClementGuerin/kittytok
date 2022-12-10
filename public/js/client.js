@@ -36,7 +36,7 @@ socket.on('member', function(data) {
 const gameWindow = document.querySelector("#game");
 var catGround = 830;
 
-function createCat(user) {
+function createCat(user = {userId: 0, nickname: "", profilePictureUrl: "", godmode: true}) {
     // Cat
     let newCat = document.createElement("div");
     newCat.classList.add("cat");
@@ -46,6 +46,12 @@ function createCat(user) {
     newCat.setAttribute("data-life", "100");
     newCat.style.left = (gameWindow.offsetWidth / 2) + "px";
     newCat.style.top = catGround + "px";
+
+    if(user.godmode) {
+        newCat.setAttribute("data-godmode", "true");
+    } else {
+        newCat.setAttribute("data-godmode", "false");
+    }
     
     // Cat > Cat Skin
     let newCatSkin = document.createElement("div");
@@ -63,6 +69,9 @@ function createCat(user) {
 
     // Add Cat to Game Window
     gameWindow.appendChild(newCat);
+
+    // Spawn Sound
+    spawnSound.play();
 };
 
 function giveLife(user) {
@@ -105,14 +114,17 @@ setInterval(function(){
 
         const catLife = parseInt(cat.getAttribute("data-life"));
 
-        if(catLife <= 0) {
-            cat.remove();
-        } else {
-            let greyCalc = (-catLife / 100) + 1;
-            cat.style.filter = "grayscale(" + greyCalc + ")";
-            cat.style.opacity = catLife / 100;
-
-            cat.setAttribute("data-life", catLife - 3);
+        if(!cat.getAttribute("data-godmode")) {
+            if(catLife <= 0) {
+                cat.remove();
+                deadSound.play();
+            } else {
+                let greyCalc = (-catLife / 100) + 1;
+                cat.style.filter = "grayscale(" + greyCalc + ")";
+                cat.style.opacity = catLife / 100;
+    
+                cat.setAttribute("data-life", catLife - 3);
+            }
         }
 
     }
@@ -155,6 +167,16 @@ setTimeout(function(){
         catGround = urlParams.get('cats');
     }
 }, 1000);
+
+// START
+
+var spawnSound = new Audio('/sounds/spawn.wav');
+var deadSound = new Audio('/sounds/dead.wav');
+
+createCat();
+
+setTimeout(createCat(), 2000);
+setTimeout(createCat(), 5000);
 
 // Help functions
 function randomNum(min, max) {
